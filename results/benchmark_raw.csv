@@ -1,0 +1,73 @@
+model,tag,size_gb,question,type,tokens_per_sec,eval_tokens,gen_time_s,load_time_s,total_time_s,answer_words,quality,refused
+Q4_K_M,llama3.2:3b,2.02,What is retrieval-augmented generation and why is it useful?,in_domain,38.5,213,5.53,2.21,11.45,161,1.0,False
+Q4_K_M,llama3.2:3b,2.02,What are the main components or stages of a RAG system?,in_domain,39.3,196,4.98,0.14,7.68,143,0.8,False
+Q4_K_M,llama3.2:3b,2.02,How does RAG help reduce hallucination or factually incorrect output?,in_domain,39.2,211,5.38,0.13,8.04,158,1.0,True
+Q4_K_M,llama3.2:3b,2.02,What is non-parametric memory in the RAG model of Lewis et al.?,in_domain,39.3,101,2.57,0.13,5.47,70,1.0,False
+Q4_K_M,llama3.2:3b,2.02,How does RAG differ from simply fine-tuning a language model?,in_domain,39.0,281,7.2,0.13,9.88,210,1.0,False
+Q4_K_M,llama3.2:3b,2.02,What is 4-bit NormalFloat (NF4) and what is it used for in QLoRA?,in_domain,38.7,107,2.76,0.14,6.41,77,0.8,False
+Q4_K_M,llama3.2:3b,2.02,What is double quantization in QLoRA?,in_domain,39.1,160,4.1,0.15,7.21,110,1.0,False
+Q4_K_M,llama3.2:3b,2.02,What are paged optimizers in QLoRA used for?,in_domain,39.1,91,2.32,0.13,5.6,72,0.75,False
+Q4_K_M,llama3.2:3b,2.02,What is the main achievement of QLoRA in terms of memory efficiency?,in_domain,39.2,96,2.45,0.21,5.64,64,1.0,False
+Q4_K_M,llama3.2:3b,2.02,What problem does LLM.int8() address when running large transformer models?,in_domain,38.7,164,4.24,0.14,7.43,120,0.6,False
+Q4_K_M,llama3.2:3b,2.02,What are outlier features in the context of LLM.int8()?,in_domain,39.1,119,3.05,0.13,6.21,83,1.0,False
+Q4_K_M,llama3.2:3b,2.02,How does GPTQ perform post-training quantization of large language models?,in_domain,39.0,89,2.28,0.13,5.62,59,0.8,False
+Q4_K_M,llama3.2:3b,2.02,To what precision can GPTQ compress model weights?,in_domain,39.0,67,1.72,0.14,3.71,42,0.6,False
+Q4_K_M,llama3.2:3b,2.02,What privacy risk do Carlini et al. demonstrate about large language models?,in_domain,38.1,265,6.95,0.15,10.87,209,1.0,False
+Q4_K_M,llama3.2:3b,2.02,What is training data memorization according to Carlini et al.?,in_domain,39.1,79,2.02,0.14,5.21,56,0.4,False
+Q4_K_M,llama3.2:3b,2.02,What is the capital of Sweden and who won the 2018 World Cup?,out_of_domain,38.6,68,1.76,0.17,5.8,57,,True
+Q4_K_M,llama3.2:3b,2.02,What is the current price of Bitcoin in US dollars?,out_of_domain,42.4,10,0.24,0.16,4.01,8,,True
+Q4_K_M,llama3.2:3b,2.02,Can you give me a recipe for traditional Swedish meatballs?,out_of_domain,43.0,10,0.23,0.15,3.32,8,,True
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is retrieval-augmented generation and why is it useful?,in_domain,30.7,201,6.54,2.51,12.94,148,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What are the main components or stages of a RAG system?,in_domain,31.1,146,4.69,0.13,7.59,105,0.6,True
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,How does RAG help reduce hallucination or factually incorrect output?,in_domain,31.4,60,1.91,0.13,4.8,46,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is non-parametric memory in the RAG model of Lewis et al.?,in_domain,30.8,160,5.2,0.13,8.35,116,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,How does RAG differ from simply fine-tuning a language model?,in_domain,30.9,155,5.01,0.13,7.91,118,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is 4-bit NormalFloat (NF4) and what is it used for in QLoRA?,in_domain,30.5,118,3.87,0.16,7.89,83,0.8,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is double quantization in QLoRA?,in_domain,30.8,91,2.95,0.13,6.33,60,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What are paged optimizers in QLoRA used for?,in_domain,30.6,143,4.67,0.14,8.24,100,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is the main achievement of QLoRA in terms of memory efficiency?,in_domain,30.6,176,5.76,0.14,9.17,115,0.6,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What problem does LLM.int8() address when running large transformer models?,in_domain,30.4,174,5.72,0.14,9.35,124,0.8,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What are outlier features in the context of LLM.int8()?,in_domain,29.8,140,4.7,0.14,8.31,93,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,How does GPTQ perform post-training quantization of large language models?,in_domain,30.4,73,2.4,0.16,6.33,48,0.8,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,To what precision can GPTQ compress model weights?,in_domain,29.5,104,3.53,0.16,5.78,68,1.0,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What privacy risk do Carlini et al. demonstrate about large language models?,in_domain,29.4,59,2.0,0.13,6.74,49,0.4,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is training data memorization according to Carlini et al.?,in_domain,26.5,241,9.09,0.14,13.01,182,0.6,False
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is the capital of Sweden and who won the 2018 World Cup?,out_of_domain,32.0,10,0.31,0.15,5.68,8,,True
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,What is the current price of Bitcoin in US dollars?,out_of_domain,31.3,10,0.32,0.16,5.19,8,,True
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,Can you give me a recipe for traditional Swedish meatballs?,out_of_domain,31.5,10,0.32,0.16,4.49,8,,True
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is retrieval-augmented generation and why is it useful?,in_domain,29.5,159,5.39,2.75,11.98,114,1.0,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What are the main components or stages of a RAG system?,in_domain,28.7,111,3.87,0.13,7.53,77,0.6,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,How does RAG help reduce hallucination or factually incorrect output?,in_domain,28.9,91,3.15,0.13,6.82,66,0.8,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is non-parametric memory in the RAG model of Lewis et al.?,in_domain,29.1,94,3.23,0.13,7.21,69,1.0,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,How does RAG differ from simply fine-tuning a language model?,in_domain,27.7,192,6.93,0.13,10.54,147,1.0,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is 4-bit NormalFloat (NF4) and what is it used for in QLoRA?,in_domain,27.8,190,6.84,0.13,11.93,130,1.0,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is double quantization in QLoRA?,in_domain,28.6,156,5.46,0.13,9.71,101,1.0,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What are paged optimizers in QLoRA used for?,in_domain,29.1,138,4.75,0.13,9.12,106,1.0,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is the main achievement of QLoRA in terms of memory efficiency?,in_domain,29.9,93,3.11,0.13,7.28,55,1.0,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What problem does LLM.int8() address when running large transformer models?,in_domain,29.1,121,4.15,0.19,8.39,87,0.4,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What are outlier features in the context of LLM.int8()?,in_domain,29.5,91,3.09,0.14,7.33,55,0.75,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,How does GPTQ perform post-training quantization of large language models?,in_domain,29.5,107,3.63,0.14,8.04,76,0.6,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,To what precision can GPTQ compress model weights?,in_domain,30.9,24,0.78,0.15,3.39,15,0.6,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What privacy risk do Carlini et al. demonstrate about large language models?,in_domain,31.0,31,1.0,0.16,6.02,24,0.4,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is training data memorization according to Carlini et al.?,in_domain,29.8,100,3.35,0.16,7.33,72,0.4,False
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is the capital of Sweden and who won the 2018 World Cup?,out_of_domain,30.0,61,2.03,0.14,7.28,50,,True
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,What is the current price of Bitcoin in US dollars?,out_of_domain,33.6,10,0.3,0.18,5.18,8,,True
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,Can you give me a recipe for traditional Swedish meatballs?,out_of_domain,34.2,10,0.29,0.15,4.1,8,,True
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is retrieval-augmented generation and why is it useful?,in_domain,25.2,215,8.54,3.0,14.68,155,1.0,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What are the main components or stages of a RAG system?,in_domain,25.5,82,3.22,0.13,6.28,60,0.2,True
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,How does RAG help reduce hallucination or factually incorrect output?,in_domain,25.6,78,3.05,0.13,5.98,58,1.0,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is non-parametric memory in the RAG model of Lewis et al.?,in_domain,25.2,177,7.01,0.13,10.2,123,1.0,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,How does RAG differ from simply fine-tuning a language model?,in_domain,25.4,106,4.17,0.13,7.25,82,1.0,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is 4-bit NormalFloat (NF4) and what is it used for in QLoRA?,in_domain,25.1,211,8.4,0.13,12.49,145,1.0,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is double quantization in QLoRA?,in_domain,25.6,73,2.85,0.14,6.29,49,1.0,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What are paged optimizers in QLoRA used for?,in_domain,25.5,92,3.61,0.14,7.1,72,0.75,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is the main achievement of QLoRA in terms of memory efficiency?,in_domain,25.4,118,4.64,0.14,8.02,87,0.8,True
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What problem does LLM.int8() address when running large transformer models?,in_domain,28.0,10,0.36,0.14,3.87,8,0.0,True
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What are outlier features in the context of LLM.int8()?,in_domain,24.7,307,12.45,0.15,15.79,191,1.0,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,How does GPTQ perform post-training quantization of large language models?,in_domain,24.3,185,7.6,0.19,11.79,128,0.8,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,To what precision can GPTQ compress model weights?,in_domain,25.0,51,2.04,0.17,4.7,36,0.6,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What privacy risk do Carlini et al. demonstrate about large language models?,in_domain,24.7,118,4.78,0.17,9.64,85,0.6,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is training data memorization according to Carlini et al.?,in_domain,23.8,168,7.07,0.15,11.1,123,0.4,False
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is the capital of Sweden and who won the 2018 World Cup?,out_of_domain,25.1,87,3.47,0.17,8.63,68,,True
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,What is the current price of Bitcoin in US dollars?,out_of_domain,27.7,10,0.36,0.15,4.98,8,,True
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,Can you give me a recipe for traditional Swedish meatballs?,out_of_domain,25.1,86,3.42,0.15,6.92,63,,True

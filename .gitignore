@@ -1,0 +1,14 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Vector stores (regenerable via ingest scripts)
+chroma_db/
+chroma_db_private/
+
+# Corpus PDFs (downloadable via fetch_corpus.sh)
+data/*.pdf
+
+# OS
+.DS_Store

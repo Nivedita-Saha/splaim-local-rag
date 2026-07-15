@@ -1,0 +1,5 @@
+model,tag,size_gb,avg_tokens_per_sec,avg_quality_in_domain,refusal_rate,avg_gen_time_s,n_in_domain,n_ood
+Q4_K_M,llama3.2:3b,2.02,39.4,0.85,1.0,3.32,15,3
+Q5_K_M,llama3.2:3b-instruct-q5_K_M,2.32,30.5,0.84,1.0,3.83,15,3
+Q6_K,llama3.2:3b-instruct-q6_K,2.64,29.8,0.77,1.0,3.41,15,3
+Q8_0,llama3.2:3b-instruct-q8_0,3.42,25.4,0.743,1.0,4.84,15,3

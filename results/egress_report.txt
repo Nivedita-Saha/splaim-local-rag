@@ -1,0 +1,12 @@
+EGRESS VERIFICATION REPORT
+==================================================
+Total connection attempts logged : 1
+Unique endpoints                 : 1
+  LOCAL (loopback)               : 1
+  EXTERNAL                       : 0
+
+Local endpoints (expected — the on-device Ollama server):
+  127.0.0.1:11434
+
+EXTERNAL endpoints: NONE
+  -> No data left the machine during this query.

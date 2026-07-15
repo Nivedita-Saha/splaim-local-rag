@@ -1,0 +1,16 @@
+PII REDACTION AUDIT — privacy-preserving ingestion
+=======================================================
+Documents ingested : 6
+Total chunks       : 487
+Total PII masked   : 4
+
+By identifier type:
+  EMAIL         : 4
+
+By document:
+     1  extracting_training_data_carlini_2021.pdf
+     1  gptq_frantar_2022.pdf
+     0  llm_int8_dettmers_2022.pdf
+     0  qlora_dettmers_2023.pdf
+     1  rag_lewis_2020.pdf
+     1  rag_survey_gao_2023.pdf
