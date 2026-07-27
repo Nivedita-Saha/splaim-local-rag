@@ -12,3 +12,11 @@ data/*.pdf
 
 # OS
 .DS_Store
+
+# --- security/prompt_injection: throwaway / regenerable artefacts ---
+security/prompt_injection/attack_db/
+security/prompt_injection/corpus_clean/
+security/prompt_injection/corpus_poisoned/
+security/prompt_injection/results/_frames/
+security/prompt_injection/**/__pycache__/
+security/prompt_injection/attack_v*_backup.py
