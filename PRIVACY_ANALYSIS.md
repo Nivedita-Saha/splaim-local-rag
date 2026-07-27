@@ -79,7 +79,7 @@ threats that remain, so that they can be mitigated rather than ignored.
 | **Device compromise / theft** | The vector store and documents sit on local disk. | Full-disk encryption (e.g. FileVault); OS access controls. |
 | **Unencrypted vector store** | ChromaDB persists embeddings and source text in plaintext on disk. | Encrypt the store at rest; restrict file permissions. |
 | **Malicious model weights** | A tampered or backdoored model pulled from a registry could behave adversarially. | Verify checksums; pin trusted model sources. |
-| **Data-poisoning / indirect prompt injection** | A malicious instruction hidden in an ingested document could subvert generation. | Treat retrieved context as untrusted; input sanitisation; output constraints. |
+| **Data-poisoning / indirect prompt injection** | A malicious instruction hidden in an ingested document could subvert generation. | **Demonstrated and mitigated** (see `security/prompt_injection/SECURITY_ANALYSIS.md`): 10-variant red-team, baseline ASR 0.30 reduced to 0.00 by input sanitisation. Note: prompt-level sandboxing alone was ineffective. |
 | **Residual PII in the index** | Unstructured PII (names, addresses) is not caught by regex redaction. | NER-based redaction (§6). |
 
 Framing local deployment this way reflects the SPLAIM emphasis on threat

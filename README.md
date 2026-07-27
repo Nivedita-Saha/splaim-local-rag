@@ -101,6 +101,23 @@ python src/verify_egress.py
 
 ---
 
+## Security extensions
+
+Beyond the privacy analysis, the pipeline's threat model is tested directly. An
+indirect prompt-injection red-team (`security/prompt_injection/`) hides
+malicious instructions inside corpus documents and measures how often the model
+obeys them, before and after defences.
+
+![Prompt-injection ASR before and after defences](security/prompt_injection/results/asr_animation.gif)
+
+Across 10 attack variants (5 technique families), the baseline attack success
+rate was 0.30. Prompt-level sandboxing alone made no difference; input
+sanitisation reduced it to 0.00. A clean-corpus control scored 0.00, confirming
+the result is caused by the injections. Full method, results and limitations are
+in `security/prompt_injection/SECURITY_ANALYSIS.md`.
+
+---
+
 ## Honest limitations
 
 - The quality metric is a transparent keyword-recall proxy; rigorous
