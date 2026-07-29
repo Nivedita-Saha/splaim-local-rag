@@ -80,7 +80,7 @@ threats that remain, so that they can be mitigated rather than ignored.
 | **Unencrypted vector store** | ChromaDB persists embeddings and source text in plaintext on disk. | Encrypt the store at rest; restrict file permissions. |
 | **Malicious model weights** | A tampered or backdoored model pulled from a registry could behave adversarially. | Verify checksums; pin trusted model sources. |
 | **Data-poisoning / indirect prompt injection** | A malicious instruction hidden in an ingested document could subvert generation. | **Demonstrated and mitigated** (see `security/prompt_injection/SECURITY_ANALYSIS.md`): 10-variant red-team, baseline ASR 0.30 reduced to 0.00 by input sanitisation. Note: prompt-level sandboxing alone was ineffective. |
-| **Residual PII in the index** | Unstructured PII (names, addresses) is not caught by regex redaction. | NER-based redaction (§6). |
+| **PII leakage from the index** | Sensitive corpus content can be surfaced by an ordinary retrieval query. Structured PII is masked at ingestion; unstructured PII (names, addresses, free-form codes) is not caught by regex redaction. | **Demonstrated and mitigated** (see `security/leakage/SECURITY_ANALYSIS.md`): 6 planted canaries, extraction-success 1.00 reduced to 0.17 by ingestion-time redaction, which secured all 5 structured identifiers. Residual leak is the 1 unstructured canary -> NER-based redaction (section 6). |
 
 Framing local deployment this way reflects the SPLAIM emphasis on threat
 modelling: the privacy gains of §2 are real, but they shift the security

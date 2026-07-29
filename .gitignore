@@ -20,3 +20,9 @@ security/prompt_injection/corpus_poisoned/
 security/prompt_injection/results/_frames/
 security/prompt_injection/**/__pycache__/
 security/prompt_injection/attack_v*_backup.py
+
+# --- security/leakage: throwaway / regenerable artefacts ---
+security/leakage/index_unredacted/
+security/leakage/index_redacted/
+security/leakage/corpus_canary/
+security/leakage/**/__pycache__/
