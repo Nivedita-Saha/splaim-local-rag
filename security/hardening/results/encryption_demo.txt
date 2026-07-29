@@ -1,0 +1,17 @@
+=== Encryption-at-rest demonstration ===
+Encrypted file: vector_store.enc  (8,410,675 bytes)
+
+[1] Raw file is opaque (not readable as text / JSON):
+    first 24 bytes (hex): 53504c41494d454e433172e5f843597555f92e2f87393581
+    printable ASCII in those bytes: 19/24
+    JSON parse of raw file: failed as expected (data is ciphertext)
+
+[2] Decryption with a WRONG passphrase:
+    failed with InvalidTag as expected - unreadable without the key
+
+[3] Decryption with the CORRECT passphrase:
+    OK - recovered 487 documents, embed dim 768
+
+Conclusion: the vector store is AES-256-GCM encrypted at rest. Without
+the passphrase-derived key the contents are unrecoverable, and any
+tampering is detected by the GCM authentication tag.

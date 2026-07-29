@@ -1,0 +1,18 @@
+=== Access-control hardening ===
+Restricting permissions on sensitive artefacts (owner-only).
+
+  [file] vector_store.enc  (encrypted corpus container)
+         before: -rw-r--r--  (0o644)
+         after:  -rw-------  (0o600)
+  [file] model_manifest.json  (integrity root of trust)
+         before: -rw-r--r--  (0o644)
+         after:  -rw-------  (0o600)
+  [dir ] chroma_db_private  (plaintext private store (owner-only))
+         before: drwxr-xr-x  (0o755)
+         after:  drwx------  (0o700)
+
+Rationale: even with AES-256-GCM protecting the store's contents,
+owner-only permissions stop other local accounts from reading the
+ciphertext or editing the integrity manifest. This is defence in depth:
+encryption protects confidentiality of the data, permissions reduce the
+local attack surface around the key-management and integrity controls.

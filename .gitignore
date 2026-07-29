@@ -26,3 +26,9 @@ security/leakage/index_unredacted/
 security/leakage/index_redacted/
 security/leakage/corpus_canary/
 security/leakage/**/__pycache__/
+
+# --- security/hardening: local / machine-specific artefacts ---
+security/hardening/vector_store.enc
+security/hardening/model_manifest.json
+security/hardening/results/model_manifest_tampered.json
+security/hardening/**/__pycache__/

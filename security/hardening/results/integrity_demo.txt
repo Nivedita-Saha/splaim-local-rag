@@ -1,0 +1,17 @@
+=== Model-integrity tamper demonstration ===
+Real model blobs are NOT modified. We simulate a forged manifest entry
+and confirm verification refuses the affected model (fail-closed).
+
+[1] Verify against the GENUINE manifest (expect all OK):
+    result: all verified
+
+[2] Forged a manifest where 'llama3.2:3b' records a wrong digest:
+    genuine  091b4c9823f6a1fc2098e0cf...
+    forged   f91b4c9823f6a1fc2098e0cf...
+    Verifying the REAL model against this forged record (expect BLOCKED):
+
+    verification passed overall: False  (expected False)
+    blocked models: ['llama3.2:3b']
+
+Conclusion: a mismatch between recorded and actual weights is detected
+and the model is refused. The integrity check fails closed.
