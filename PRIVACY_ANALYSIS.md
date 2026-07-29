@@ -28,8 +28,8 @@ The pipeline has four stages, all executed on-device:
 The corpus comprises 6 open-access papers (487 chunks). No component calls an
 external API: embeddings, the vector store, and generation are all local. This
 is the fundamental privacy property — the retrieval-augmented approach of
-Lewis et al. (2020) is realised without exposing documents or queries to any
-third party.
+Lewis et al. (2020), surveyed by Gao et al. (2024), is realised without
+exposing documents or queries to any third party.
 
 ### Empirical verification of the no-egress property
 
@@ -185,9 +185,8 @@ post-training quantization for generative pre-trained transformers'.
 arXiv:2210.17323.
 
 Gao, Y., Xiong, Y., Gao, X., Jia, K., Pan, J., Bi, Y., Dai, Y., Sun, J., Wang,
-M. and Wang, H. (2023) 'Retrieval-augmented generation for large language
-models: A survey'. arXiv:2312.10997. [Confirm the full author list against the
-PDF before submission.]
+M. and Wang, H. (2024) 'Retrieval-augmented generation for large language
+models: A survey'. arXiv:2312.10997.
 
 Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N.,
 Küttler, H., Lewis, M., Yih, W., Rocktäschel, T., Riedel, S. and Kiela, D.
