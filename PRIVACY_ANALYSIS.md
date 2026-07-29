@@ -86,6 +86,16 @@ Framing local deployment this way reflects the SPLAIM emphasis on threat
 modelling: the privacy gains of §2 are real, but they shift the security
 burden onto device and supply-chain controls rather than eliminating it.
 
+Taken together, the security extensions turn these mitigations from intentions
+into working controls. Four of the five threats above now carry an implemented
+control in this repository: indirect prompt injection and PII leakage are each
+demonstrated and mitigated, while the unencrypted store and malicious-weights
+threats are closed by encryption at rest and a fail-closed integrity check. The
+fifth, device compromise or theft, is addressed in part by that same encryption
+at rest, and otherwise rests on operating-system controls such as full-disk
+encryption that sit below the pipeline rather than within it. No modelled threat
+remains an untested proposal.
+
 ---
 
 ## 4. The quantization trade-off under resource constraints
