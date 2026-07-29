@@ -103,9 +103,10 @@ python src/verify_egress.py
 
 ## Security extensions
 
-Beyond the privacy analysis, the pipeline's threat model is tested directly by
-two red-team extensions under `security/`, each turning a named threat into a
-measured attack, a defence, and a before/after result.
+Beyond the privacy analysis, every threat in the model is addressed directly by
+three extensions under `security/`. Two are red-teams that turn a named threat
+into a measured attack, a defence, and a before/after result; the third builds
+and demonstrates the remaining mitigations.
 
 **Indirect prompt injection** (`security/prompt_injection/`) hides malicious
 instructions inside corpus documents and measures how often the model obeys
@@ -132,6 +133,16 @@ redaction secured all 5 structured identifiers, and the single residual leak is
 one unstructured access code that regex redaction cannot catch, quantifying the
 NER limitation noted in the privacy analysis. Full method, results and
 limitations are in `security/leakage/SECURITY_ANALYSIS.md`.
+
+**Encryption at rest and model integrity** (`security/hardening/`) closes the
+two remaining threats by building the mitigations. The private vector store is
+exported and encrypted at rest with AES-256-GCM under a passphrase-derived key,
+shown to be unreadable without the key and to round-trip all 487 documents with
+it. Each trusted model's SHA-256 digest, computed over its on-disk weight blobs,
+is recorded in a manifest, and a fail-closed verifier refuses any model that
+does not match, demonstrated against a forged manifest. Owner-only file
+permissions back both controls. Full method, results and limitations are in
+`security/hardening/SECURITY_ANALYSIS.md`.
 
 ---
 
