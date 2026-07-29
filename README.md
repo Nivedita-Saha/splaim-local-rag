@@ -103,10 +103,13 @@ python src/verify_egress.py
 
 ## Security extensions
 
-Beyond the privacy analysis, the pipeline's threat model is tested directly. An
-indirect prompt-injection red-team (`security/prompt_injection/`) hides
-malicious instructions inside corpus documents and measures how often the model
-obeys them, before and after defences.
+Beyond the privacy analysis, the pipeline's threat model is tested directly by
+two red-team extensions under `security/`, each turning a named threat into a
+measured attack, a defence, and a before/after result.
+
+**Indirect prompt injection** (`security/prompt_injection/`) hides malicious
+instructions inside corpus documents and measures how often the model obeys
+them, before and after defences.
 
 ![Prompt-injection ASR before and after defences](security/prompt_injection/results/asr_animation.gif)
 
@@ -115,6 +118,20 @@ rate was 0.30. Prompt-level sandboxing alone made no difference; input
 sanitisation reduced it to 0.00. A clean-corpus control scored 0.00, confirming
 the result is caused by the injections. Full method, results and limitations are
 in `security/prompt_injection/SECURITY_ANALYSIS.md`.
+
+**PII extraction / leakage** (`security/leakage/`) plants synthetic secret
+"canaries" in the corpus and probes whether retrieval can be induced to reveal
+them, comparing an unredacted index against one protected by the pipeline's
+ingestion-time PII redaction.
+
+![PII extraction-success before and after redaction](security/leakage/results/leakage_before_after.png)
+
+Across 6 planted canaries (each probed with 3 query styles), extraction-success
+was 1.00 against the unredacted index and 0.17 against the redacted one:
+redaction secured all 5 structured identifiers, and the single residual leak is
+one unstructured access code that regex redaction cannot catch, quantifying the
+NER limitation noted in the privacy analysis. Full method, results and
+limitations are in `security/leakage/SECURITY_ANALYSIS.md`.
 
 ---
 
