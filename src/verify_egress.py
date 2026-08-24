@@ -18,9 +18,9 @@ import socket
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RESULTS_DIR  = PROJECT_ROOT / "results"
+RESULTS_DIR = PROJECT_ROOT / "results"
 
-connection_log = []          # (host, port, classification)
+connection_log = []  # (host, port, classification)
 LOOPBACK = {"127.0.0.1", "::1", "localhost", "0.0.0.0"}
 
 
@@ -46,16 +46,17 @@ socket.socket.connect = _logged_connect
 # -----------------------------------------------------------------
 
 # Import the query pipeline AFTER patching so its calls are captured
-import sys
+import sys  # noqa: E402  (intentional: import after socket patching)
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import query as ragquery
+import query as ragquery  # noqa: E402  (intentional: import after socket patching)
 
 
 def main():
     RESULTS_DIR.mkdir(exist_ok=True)
 
     test_q = "What is retrieval-augmented generation and why is it useful?"
-    print(f"Running instrumented query:\n  \"{test_q}\"\n")
+    print(f'Running instrumented query:\n  "{test_q}"\n')
     print("=" * 60)
     ragquery.answer(test_q, ragquery.GEN_MODEL, ragquery.TOP_K)
     print("=" * 60)
@@ -66,7 +67,7 @@ def main():
         seen[(host, port)] = cls
 
     external = [(h, p) for (h, p), c in seen.items() if c == "EXTERNAL"]
-    local    = [(h, p) for (h, p), c in seen.items() if c == "LOCAL"]
+    local = [(h, p) for (h, p), c in seen.items() if c == "LOCAL"]
 
     lines = []
     lines.append("EGRESS VERIFICATION REPORT")

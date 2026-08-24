@@ -9,11 +9,12 @@ to results/redaction_audit.txt.
 Runs fully on-device.
 """
 
-from pathlib import Path
 import re
 import sys
-import ollama
+from pathlib import Path
+
 import chromadb
+import ollama
 from pypdf import PdfReader
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -21,12 +22,12 @@ from redact import redact_text
 
 # ---- Config -------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR     = PROJECT_ROOT / "data"
-DB_DIR       = PROJECT_ROOT / "chroma_db_private"   # separate store
-RESULTS_DIR  = PROJECT_ROOT / "results"
-COLLECTION   = "splaim_corpus_private"
-EMBED_MODEL  = "nomic-embed-text"
-CHUNK_SIZE   = 1200
+DATA_DIR = PROJECT_ROOT / "data"
+DB_DIR = PROJECT_ROOT / "chroma_db_private"  # separate store
+RESULTS_DIR = PROJECT_ROOT / "results"
+COLLECTION = "splaim_corpus_private"
+EMBED_MODEL = "nomic-embed-text"
+CHUNK_SIZE = 1200
 CHUNK_OVERLAP = 200
 # ------------------------------------------------------------------------
 
@@ -38,7 +39,7 @@ def clean(text):
 def chunk_text(text, size, overlap):
     chunks, start = [], 0
     while start < len(text):
-        piece = text[start:start + size].strip()
+        piece = text[start : start + size].strip()
         if piece:
             chunks.append(piece)
         start += size - overlap
@@ -82,13 +83,13 @@ def main():
         ids, docs, embs, metas = [], [], [], []
         doc_masked = 0
         for i, ch in enumerate(chunks):
-            redacted, stats = redact_text(ch)      # <-- privacy step
+            redacted, stats = redact_text(ch)  # <-- privacy step
             for k, v in stats.items():
                 corpus_stats[k] = corpus_stats.get(k, 0) + v
                 doc_masked += v
             ids.append(f"{pdf.stem}_{i}")
-            docs.append(redacted)                  # store the REDACTED text
-            embs.append(embed(redacted))           # embed the REDACTED text
+            docs.append(redacted)  # store the REDACTED text
+            embs.append(embed(redacted))  # embed the REDACTED text
             metas.append({"source": pdf.name, "chunk": i})
             if (i + 1) % 20 == 0:
                 print(f"    embedded {i + 1}/{len(chunks)}")

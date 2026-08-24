@@ -1,0 +1,11 @@
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+extend-exclude = ["security", "venv", "results", "data"]
+
+[tool.ruff.lint]
+# E/W = pycodestyle, F = pyflakes, I = isort, B = flake8-bugbear, UP = pyupgrade
+select = ["E", "W", "F", "I", "B", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"

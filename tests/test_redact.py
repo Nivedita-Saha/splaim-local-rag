@@ -1,6 +1,6 @@
 """Unit tests for src/redact.py (PII redaction)."""
 
-from src.redact import redact_text, luhn_valid
+from src.redact import luhn_valid, redact_text
 
 
 def test_email_is_masked():

@@ -11,16 +11,17 @@ Usage:
 import argparse
 import time
 from pathlib import Path
-import ollama
+
 import chromadb
+import ollama
 
 # ---- Config -------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DB_DIR       = PROJECT_ROOT / "chroma_db"
-COLLECTION   = "splaim_corpus"
-EMBED_MODEL  = "nomic-embed-text"
-GEN_MODEL    = "llama3.2:3b"   # default generator
-TOP_K        = 4
+DB_DIR = PROJECT_ROOT / "chroma_db"
+COLLECTION = "splaim_corpus"
+EMBED_MODEL = "nomic-embed-text"
+GEN_MODEL = "llama3.2:3b"  # default generator
+TOP_K = 4
 # ------------------------------------------------------------------------
 
 SYSTEM_PROMPT = (
@@ -40,15 +41,15 @@ def embed_query(text: str):
 def retrieve(coll, question: str, k: int):
     q_emb = embed_query(question)
     res = coll.query(query_embeddings=[q_emb], n_results=k)
-    docs  = res["documents"][0]
+    docs = res["documents"][0]
     metas = res["metadatas"][0]
     dists = res["distances"][0]
-    return list(zip(docs, metas, dists))
+    return list(zip(docs, metas, dists, strict=False))
 
 
 def build_context(hits):
     blocks = []
-    for i, (doc, meta, dist) in enumerate(hits, start=1):
+    for i, (doc, meta, _dist) in enumerate(hits, start=1):
         blocks.append(f"[{i}] (source: {meta['source']})\n{doc}")
     return "\n\n".join(blocks)
 
@@ -61,8 +62,7 @@ def answer(question: str, model: str, k: int):
     context = build_context(hits)
 
     user_msg = (
-        f"Context passages:\n\n{context}\n\n"
-        f"Question: {question}\n\nAnswer (cite passages as [n]):"
+        f"Context passages:\n\n{context}\n\nQuestion: {question}\n\nAnswer (cite passages as [n]):"
     )
 
     t0 = time.time()
@@ -82,7 +82,7 @@ def answer(question: str, model: str, k: int):
     print(resp["message"]["content"].strip())
     print("\n" + "-" * 70)
     print("SOURCES RETRIEVED:")
-    for i, (doc, meta, dist) in enumerate(hits, start=1):
+    for i, (_doc, meta, dist) in enumerate(hits, start=1):
         print(f"  [{i}] {meta['source']}  (chunk {meta['chunk']}, distance {dist:.3f})")
     print("-" * 70)
 
