@@ -53,6 +53,7 @@ def redact_text(text):
         def _sub(m):
             stats[label] = stats.get(label, 0) + 1
             return f"[REDACTED_{label}]"
+
         return _sub
 
     # Email first (so '@' isn't disturbed by later patterns)
@@ -64,7 +65,8 @@ def redact_text(text):
         if luhn_valid(m.group(0)):
             stats["CARD"] = stats.get("CARD", 0) + 1
             return "[REDACTED_CARD]"
-        return m.group(0)   # card-shaped but invalid -> leave untouched
+        return m.group(0)  # card-shaped but invalid -> leave untouched
+
     redacted = CARD_RE.sub(_card_sub, redacted)
 
     redacted = PHONE_INTL_RE.sub(counter("PHONE"), redacted)
@@ -96,16 +98,17 @@ def _demo():
     else:
         print("  (none found)")
     print(f"\nTotal identifiers masked: {sum(stats.values())}")
-    print(f"Real card '4111...' masked (expected True): "
-          f"{'[REDACTED_CARD]' in clean}")
-    print(f"Page range '9459-9474' survived (expected True): "
-          f"{'9459-9474' in clean}")
-    print(f"Dimension row '1536 2048 2560 4096' survived (expected True): "
-          f"{'1536 2048 2560 4096' in clean}")
+    print(f"Real card '4111...' masked (expected True): {'[REDACTED_CARD]' in clean}")
+    print(f"Page range '9459-9474' survived (expected True): {'9459-9474' in clean}")
+    print(
+        f"Dimension row '1536 2048 2560 4096' survived (expected True): "
+        f"{'1536 2048 2560 4096' in clean}"
+    )
 
 
 if __name__ == "__main__":
     import sys
+
     if "--demo" in sys.argv:
         _demo()
     else:

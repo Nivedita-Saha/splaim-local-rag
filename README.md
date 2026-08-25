@@ -1,7 +1,8 @@
 # splaim-local-rag
 
-A fully **local, privacy-preserving Retrieval-Augmented Generation (RAG)**
-system, with a **quantization benchmark** and a **privacy/threat analysis**.
+[![CI](https://github.com/Nivedita-Saha/splaim-local-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/Nivedita-Saha/splaim-local-rag/actions/workflows/ci.yml)
+
+A fully **local, privacy-preserving Retrieval-Augmented Generation (RAG)** system, with a **quantization benchmark** and a **privacy/threat analysis**.
 Built to run entirely on-device on an Apple M2 (8 GB) laptop — no cloud APIs,
 no data leaving the machine.
 
@@ -98,6 +99,67 @@ python src/benchmark.py
 python src/plot_results.py
 python src/verify_egress.py
 ```
+
+---
+
+## Continuous integration & quality gate
+
+[![CI](https://github.com/Nivedita-Saha/splaim-local-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/Nivedita-Saha/splaim-local-rag/actions/workflows/ci.yml)
+
+Every push and pull request runs an automated quality gate via GitHub Actions
+(`.github/workflows/ci.yml`). The pipeline runs on a clean Ubuntu machine with
+Python 3.12 and checks the core pipeline (`src/`) in sequence:
+
+- **Linting & formatting** — `ruff check` and `ruff format --check`
+- **Type checking** — `mypy src`
+- **Security static analysis** — `bandit -r src`
+- **Tests** — `pytest` with coverage
+
+A second job builds a **Docker image** (`Dockerfile`) on `python:3.12-slim` and
+runs the same gate inside a from-scratch container, verifying the code assembles
+and passes in an isolated environment.
+
+### Running the gate locally
+
+```bash
+pip install -r requirements-dev.txt   # dev tools, kept separate from runtime deps
+ruff check src tests
+mypy src
+bandit -r src
+pytest --cov=src --cov-report=term-missing
+```
+
+Or reproduce the containerised gate exactly as CI does:
+
+```bash
+docker build -t splaim-local-rag:ci .
+docker run --rm splaim-local-rag:ci
+```
+
+### Scope and suppressions
+
+The gate is deliberately scoped to `src/` and `tests/`. The exploratory
+`security/` red-team scripts are excluded — they are one-off experiments, not
+maintained pipeline code. Tests cover the privacy-critical redaction logic
+(`redact.py`); coverage of the rest of `src/` is low by design, since the RAG
+pipeline needs a live Ollama daemon and local models that are out of scope for CI.
+
+A small number of linter/analyser findings are consciously suppressed with an
+inline reason rather than "fixed", because the flagged code is correct in
+context:
+
+- `verify_egress.py` imports the pipeline **after** patching `socket.connect`
+  (`# noqa: E402`), and patches the method deliberately (`# type: ignore`) — this
+  is how the egress test intercepts connections.
+- `bandit B104` on the loopback set in `verify_egress.py` is a false positive:
+  `0.0.0.0` there is a value in a *classification* set for the egress check, not
+  a server bind.
+- `bandit B110` on best-effort cleanup/unload calls, where a failure is safe and
+  intentionally ignored.
+
+The Docker image builds and runs the gate but does **not** install Ollama or pull
+model weights: reproducing the full RAG pipeline requires a host Ollama daemon
+and local models, as described under *Reproducing* above.
 
 ---
 

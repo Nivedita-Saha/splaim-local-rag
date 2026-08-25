@@ -5,21 +5,22 @@ Everything runs on-device: text extraction (pypdf), embedding
 No network calls leave the machine.
 """
 
-from pathlib import Path
 import re
 import sys
-import ollama
+from pathlib import Path
+
 import chromadb
+import ollama
 from pypdf import PdfReader
 
 # ---- Config -------------------------------------------------------------
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR     = PROJECT_ROOT / "data"
-DB_DIR       = PROJECT_ROOT / "chroma_db"
-COLLECTION   = "splaim_corpus"
-EMBED_MODEL  = "nomic-embed-text"
-CHUNK_SIZE   = 1200      # characters
-CHUNK_OVERLAP = 200      # characters
+DATA_DIR = PROJECT_ROOT / "data"
+DB_DIR = PROJECT_ROOT / "chroma_db"
+COLLECTION = "splaim_corpus"
+EMBED_MODEL = "nomic-embed-text"
+CHUNK_SIZE = 1200  # characters
+CHUNK_OVERLAP = 200  # characters
 # ------------------------------------------------------------------------
 
 
@@ -57,10 +58,9 @@ def main():
     client = chromadb.PersistentClient(path=str(DB_DIR))
     try:
         client.delete_collection(COLLECTION)
-    except Exception:
+    except Exception:  # nosec B110  # delete-if-exists before recreate; missing collection is expected
         pass
     coll = client.create_collection(COLLECTION, metadata={"hnsw:space": "cosine"})
-
     total_chunks = 0
     for pdf in pdfs:
         print(f"\nReading {pdf.name} ...")
