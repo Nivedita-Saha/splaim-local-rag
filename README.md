@@ -1,7 +1,8 @@
 # splaim-local-rag
 
-A fully **local, privacy-preserving Retrieval-Augmented Generation (RAG)**
-system, with a **quantization benchmark** and a **privacy/threat analysis**.
+[![CI](https://github.com/Nivedita-Saha/splaim-local-rag/actions/workflows/ci.yml/badge.svg)](https://github.com/Nivedita-Saha/splaim-local-rag/actions/workflows/ci.yml)
+
+A fully **local, privacy-preserving Retrieval-Augmented Generation (RAG)** system, with a **quantization benchmark** and a **privacy/threat analysis**.
 Built to run entirely on-device on an Apple M2 (8 GB) laptop — no cloud APIs,
 no data leaving the machine.
 
