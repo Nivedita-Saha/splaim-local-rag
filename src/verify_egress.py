@@ -20,8 +20,8 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RESULTS_DIR = PROJECT_ROOT / "results"
 
-connection_log = []  # (host, port, classification)
-LOOPBACK = {"127.0.0.1", "::1", "localhost", "0.0.0.0"}
+connection_log: list[tuple] = []  # (host, port, classification)
+LOOPBACK = {"127.0.0.1", "::1", "localhost", "0.0.0.0"}  # nosec B104  # not a bind; these are loopback addrs classified as LOCAL by the egress check
 
 
 def _classify(host):
@@ -42,7 +42,7 @@ def _logged_connect(self, address):
     return _orig_connect(self, address)
 
 
-socket.socket.connect = _logged_connect
+socket.socket.connect = _logged_connect  # type: ignore[method-assign]  # intentional: patch socket to log egress
 # -----------------------------------------------------------------
 
 # Import the query pipeline AFTER patching so its calls are captured

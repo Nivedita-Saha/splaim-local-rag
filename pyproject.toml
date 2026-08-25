@@ -9,3 +9,8 @@ select = ["E", "W", "F", "I", "B", "UP"]
 
 [tool.ruff.format]
 quote-style = "double"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+exclude = ["security/", "venv/", "results/", "data/"]

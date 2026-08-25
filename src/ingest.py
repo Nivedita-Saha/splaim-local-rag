@@ -58,10 +58,9 @@ def main():
     client = chromadb.PersistentClient(path=str(DB_DIR))
     try:
         client.delete_collection(COLLECTION)
-    except Exception:
+    except Exception:  # nosec B110  # delete-if-exists before recreate; missing collection is expected
         pass
     coll = client.create_collection(COLLECTION, metadata={"hnsw:space": "cosine"})
-
     total_chunks = 0
     for pdf in pdfs:
         print(f"\nReading {pdf.name} ...")

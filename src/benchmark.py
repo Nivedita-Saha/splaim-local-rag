@@ -191,7 +191,7 @@ def get_model_size_gb(tag):
             name = m.get("model") or m.get("name")
             if name == tag:
                 return round(m["size"] / 1e9, 2)
-    except Exception:
+    except Exception:  # nosec B110  # best-effort size lookup; failure returns None
         pass
     return None
 
@@ -199,7 +199,7 @@ def get_model_size_gb(tag):
 def unload(tag):
     try:
         ollama.generate(model=tag, prompt="", keep_alive=0)
-    except Exception:
+    except Exception:  # nosec B110  # best-effort model unload between runs; failure is safe
         pass
 
 
